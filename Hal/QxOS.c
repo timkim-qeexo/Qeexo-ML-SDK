@@ -1,70 +1,92 @@
 #include "QxOS.h"
+#include <cstddef>
 
-// Implement the functions declared in QxOS.h
+// Initialize Board Support Package
 void QxOS_BSP_Init(void) {
-    // Initialize Board Support Package
+    // Initialize the CMSIS-RTOS2 kernel
+    osKernelInitialize();
 }
 
-void QxOS_Thread_Create(void (*task)(void *), const char *name, int priority) {
-    // Create a new thread
+// Create a new thread
+QxOS_Thread_t QxOS_Thread_Create(void (*task)(void *), const char *name, int priority) {
+    osThreadAttr_t attr = {
+        .name = name,
+        .priority = (osPriority_t)priority
+    };
+    return osThreadNew((osThreadFunc_t)task, NULL, &attr);
 }
 
-void QxOS_Thread_Terminate(void) {
-    // Terminate the current thread
+// Terminate the specified thread
+void QxOS_Thread_Terminate(QxOS_Thread_t thread) {
+    osThreadTerminate(thread);
 }
 
-void QxOS_Thread_Suspend(void) {
-    // Suspend the current thread
+// Suspend the specified thread
+void QxOS_Thread_Suspend(QxOS_Thread_t thread) {
+    osThreadSuspend(thread);
 }
 
-void QxOS_Thread_Resume(void) {
-    // Resume the current thread
+// Resume the specified thread
+void QxOS_Thread_Resume(QxOS_Thread_t thread) {
+    osThreadResume(thread);
 }
 
-void QxOS_Mutex_Create(void) {
-    // Create a new mutex
+// Create a new mutex
+osMutexId_t QxOS_Mutex_Create(void) {
+    return osMutexNew(NULL);
 }
 
-void QxOS_Mutex_Terminate(void) {
-    // Terminate the mutex
+// Terminate the specified mutex
+void QxOS_Mutex_Terminate(osMutexId_t mutex) {
+    osMutexDelete(mutex);
 }
 
-void QxOS_Mutex_Lock(void) {
-    // Lock the mutex
+// Lock the specified mutex
+void QxOS_Mutex_Lock(osMutexId_t mutex) {
+    osMutexAcquire(mutex, osWaitForever);
 }
 
-void QxOS_Mutex_Unlock(void) {
-    // Unlock the mutex
+// Unlock the specified mutex
+void QxOS_Mutex_Unlock(osMutexId_t mutex) {
+    osMutexRelease(mutex);
 }
 
-void QxOS_Mailbox_Create(void) {
-    // Create a new mailbox
+// Create a new mailbox
+osMessageQueueId_t QxOS_Mailbox_Create(uint32_t msg_count, uint32_t msg_size) {
+    return osMessageQueueNew(msg_count, msg_size, NULL);
 }
 
-void QxOS_Mailbox_Delete(void) {
-    // Delete the mailbox
+// Delete the specified mailbox
+void QxOS_Mailbox_Delete(osMessageQueueId_t mq) {
+    osMessageQueueDelete(mq);
 }
 
-void QxOS_Mailbox_Send(void *msg) {
-    // Send a message to the mailbox
+// Send a message to the specified mailbox
+void QxOS_Mailbox_Send(osMessageQueueId_t mq, void *msg) {
+    osMessageQueuePut(mq, msg, 0, osWaitForever);
 }
 
-void QxOS_Mailbox_Receive(void *msg) {
-    // Receive a message from the mailbox
+// Receive a message from the specified mailbox
+void QxOS_Mailbox_Receive(osMessageQueueId_t mq, void *msg) {
+    osMessageQueueGet(mq, msg, NULL, osWaitForever);
 }
 
-void QxOS_Timer_Create(void (*callback)(void *), int period) {
-    // Create a new timer
+// Create a new timer
+osTimerId_t QxOS_Timer_Create(void (*callback)(void *), osTimerType_t type, void *argument) {
+    return osTimerNew((osTimerFunc_t)callback, type, argument, NULL);
 }
 
-void QxOS_Timer_Delete(void) {
-    // Delete the timer
+// Delete the specified timer
+void QxOS_Timer_Delete(osTimerId_t timer) {
+    osTimerDelete(timer);
 }
 
-void QxOS_Timer_Start(void) {
-    // Start the timer
+// Start the specified timer
+void QxOS_Timer_Start(osTimerId_t timer, uint32_t ticks) {
+    osTimerStart(timer, ticks);
 }
 
-void QxOS_Timer_Stop(void) {
-    // Stop the timer
+// Stop the specified timer
+void QxOS_Timer_Stop(osTimerId_t timer) {
+    osTimerStop(timer);
 }
