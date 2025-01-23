@@ -84,11 +84,11 @@ Generating project files according to the overall design is done very well. Howe
 
 ### Prompt 2
 
-https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1A.csv and https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1B. After reading the csv data and learning the gbm model w[...]
+ https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1A.csv and https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1B. After reading the csv data and learning the gbm model with cmsis nn, QxModel.c and QxModel.h files are created so that the user can use new input data. Generate code to infer whether A or B is used using QxML.c and QxML.h.
 
 #### Feedback
 
-When asked to provide data links from the web and create functions related to ML training and inference, the basic structure and functions are well-generated. However, the code related to actual GBM t[...]
+When asked to provide data links from the web and create functions related to ML training and inference, the basic structure and functions are well-generated. However, the code related to actual GBM training is not generated, and the user is asked to create the code themselves.
 
 ### Prompt 3
 
