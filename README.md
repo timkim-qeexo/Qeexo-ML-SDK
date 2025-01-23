@@ -39,3 +39,10 @@ System Hierarchy Structure:
 
 Prompt 2)
 https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1A.csv and https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1B. After reading the csv data and learning the gbm model with cmsis nn, QxModel.c and QxModel.h files are created so that the user can use new input data. Generate code to infer whether A or B is used using QxML.c and QxML.h.
+
+
+
+Prompt 3) 
+Please make Makefile to build source codes to a static library with name 'libQxModel.a'
+
+
