@@ -1,3 +1,5 @@
+Prompt 1)
+
 Qeexo SDK Development Specifications
 The SDK aims to read various types of sensor data, fill the sensor buffer, and deliver it to multiple registered applications. Each application processes the sensor data in an independent task. The SDK should be capable of running on an MCU by default and be designed to support models ranging from Coretex-M0 to M4.
 The project name is Qeexo-ML-SDK and it should be registered with a repository in Git.
@@ -32,3 +34,8 @@ System Hierarchy Structure:
             1. Open function
             2. write function
             3. read function
+
+
+
+Prompt 2)
+https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1A.csv and https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1B. After reading the csv data and learning the gbm model with cmsis nn, QxModel.c and QxModel.h files are created so that the user can use new input data. Generate code to infer whether A or B is used using QxML.c and QxML.h.
