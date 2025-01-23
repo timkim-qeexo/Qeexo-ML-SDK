@@ -46,3 +46,9 @@ Prompt 3)
 Please make Makefile to build source codes to a static library with name 'libQxModel.a'
 
 
+Prompt 4) 
+in Makefile, download cmsis source codes to build a library.
+
+
+Prompt 5)
+Create comments with doxygen format.
