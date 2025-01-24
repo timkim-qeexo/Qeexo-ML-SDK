@@ -10,12 +10,20 @@
 extern float model_weights[INPUT_SIZE * OUTPUT_SIZE];
 extern float model_biases[OUTPUT_SIZE];
 
-// Initialize the ML model
+/**
+ * @brief Initialize the ML model.
+ */
 void QxML_Init(void) {
     // Initialize the model (e.g., load weights and biases)
 }
 
-// Perform inference with the ML model
+/**
+ * @brief Perform inference with the ML model.
+ * 
+ * @param input_data The input data array.
+ * @param input_length The length of the input data array.
+ * @return int The predicted class.
+ */
 int QxML_Infer(const float *input_data, uint32_t input_length) {
     if (input_length != INPUT_SIZE) {
         return -1; // Error: input length does not match model input size

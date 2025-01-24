@@ -11,6 +11,11 @@ typedef struct {
     int* (*get_fsrs)(void);
 } QxSensor_t;
 
+/**
+ * @brief Register a sensor with the HAL.
+ * 
+ * @param sensor The sensor to be registered.
+ */
 void QxSensorHal_Register(QxSensor_t *sensor);
 
 #endif // QX_SENSOR_HAL_H
