@@ -113,3 +113,26 @@ Create comments with doxygen format.
 #### Feedback
 
 Comments are generated very well too.
+
+
+### Prompt 6
+
+Fix memory weakness in the given codes. 
+
+#### Feedback
+
+Provides excellent responses that identify memory vulnerabilities in the code and, if necessary, create new functions or directly modify the code.
+
+https://github.com/timkim-qeexo/Qeexo-ML-SDK/blob/main/Docs/prompt-fix%20memory%20issues.png
+
+
+### Prompt 7
+
+Generate an API guide from the entire code using Doxygen and convert it into a PDF.
+
+
+#### Feedback
+
+Provides clear instructions on how to install Doxygen and create an API guide in PDF format.
+
+https://github.com/timkim-qeexo/Qeexo-ML-SDK/blob/main/Docs/prompt-create%20doxygen%20file.png
