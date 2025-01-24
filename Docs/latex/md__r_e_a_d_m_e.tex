@@ -1,0 +1,119 @@
+\chapter{Qeexo SDK Development Specifications}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Qeexo SDK Development Specifications@{Qeexo SDK Development Specifications}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+The SDK aims to read various types of sensor data, fill the sensor buffer, and deliver it to multiple registered applications. Each application processes the sensor data in an independent task. The project name is Qeexo-\/\+ML-\/\+SDK and it should be registered with a repository in Git.\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{System Hierarchy Structure}{System Hierarchy Structure}}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyEnumerate}
+\item HAL Structure
+\begin{DoxyEnumerate}
+\item Overview
+\begin{DoxyEnumerate}
+\item All HAL codes should be implemented in C language.
+\item The prefix "{}\+Qx"{} is used, and in case the module name is attached, for example, HAL source code related to OS will be Qx\+OS.\+c and Qx\+OS.\+h files.
+\item Function names should also use the same prefix.
+\item Create a folder named "{}\+Hal"{} and design the structure and files as outlined below.
+\end{DoxyEnumerate}
+\item Qx\+OS.\+h, Qx\+OS.\+c
+\begin{DoxyEnumerate}
+\item Provide OS-\/related APIs.
+\item The files should include the following functions\+:
+\begin{DoxyEnumerate}
+\item BSP initialization function
+\item Thread creation and termination, suspend, resume functions
+\item Mutex creation, termination, lock, unlock functions
+\item Mailbox related functions
+\item Timer related functions
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\item Qx\+Sensor\+Hal.\+c, Qx\+Sensor\+Hal.\+h
+\begin{DoxyEnumerate}
+\item A module that manages and registers sensors.
+\item Each sensor should implement the following functions and register function pointers in a structure so that the upper framework can load and execute each function\+:
+\begin{DoxyEnumerate}
+\item init function
+\item enable function with odr and fsr as parameters
+\item disable function
+\item read function
+\item read\+\_\+fifo function
+\item get\+\_\+odrs function, providing a list of supported ODRs
+\item get\+\_\+fsrs function, providing a list of supported FSRs
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\item Qx\+Transceiver\+Hal.\+c, Qx\+Transceiver\+Hal.\+h
+\begin{DoxyEnumerate}
+\item A module that registers and manages communication media such as USB, BLE, and Wi\+Fi, which should be implemented as sub-\/drivers and registered.
+\item Each transceiver should be implemented with common functionality and connected through function pointers, managed by Qx\+Transceiver\+HAL, and callable by upper applications\+:
+\begin{DoxyEnumerate}
+\item Open function
+\item write function
+\item read function
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Feedback}{Feedback}}\label{md__r_e_a_d_m_e_autotoc_md2}
+Generating project files according to the overall design is done very well. However, there is a lack of detail regarding the parameters and return values of the functions.
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Prompts and Feedbacks}{Prompts and Feedbacks}}\label{md__r_e_a_d_m_e_autotoc_md4}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Prompt 1}{Prompt 1}}\label{md__r_e_a_d_m_e_autotoc_md5}
+Qeexo SDK Development Specifications The SDK aims to read various types of sensor data, fill the sensor buffer, and deliver it to multiple registered applications. Each application processes the sensor data in an independent task. The project name is Qeexo-\/\+ML-\/\+SDK and it should be registered with a repository in Git. System Hierarchy Structure\+:
+\begin{DoxyEnumerate}
+\item HAL Structure
+\begin{DoxyEnumerate}
+\item Overview
+\begin{DoxyEnumerate}
+\item All HAL codes should be implemented in C language.
+\item The prefix "{}\+Qx"{} is used, and in case the module name is attached, for example, HAL source code related to OS will be Qx\+OS.\+c and Qx\+OS.\+h files.
+\item Function names should also use the same prefix.
+\item Create a folder named "{}\+Hal"{} and design the structure and files as outlined below.
+\end{DoxyEnumerate}
+\item Qx\+OS.\+h, Qx\+OS.\+c
+\begin{DoxyEnumerate}
+\item Provide OS-\/related APIs.
+\item The files should include the following functions\+:
+\begin{DoxyEnumerate}
+\item BSP initialization function
+\item Thread creation and termination, suspend, resume functions
+\item Mutex creation, termination, lock, unlock functions
+\item Mailbox related functions
+\item Timer related functions
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\item Qx\+Sensor\+Hal.\+c, Qx\+Sensor\+Hal.\+h
+\begin{DoxyEnumerate}
+\item A module that manages and registers sensors.
+\item Each sensor should implement the following functions and register function pointers in a structure so that the upper framework can load and execute each function\+:
+\begin{DoxyEnumerate}
+\item init function
+\item enable function with odr and fsr as parameters
+\item disable function
+\item read function
+\item read\+\_\+fifo function
+\item get\+\_\+odrs function, providing a list of supported ODRs
+\item get\+\_\+fsrs function, providing a list of supported FSRs
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\item Qx\+Transceiver\+Hal.\+c, Qx\+Transceiver\+Hal.\+h
+\begin{DoxyEnumerate}
+\item A module that registers and manages communication media such as USB, BLE, and Wi\+Fi, which should be implemented as sub-\/drivers and registered.
+\item Each transceiver should be implemented with common functionality and connected through function pointers, managed by Qx\+Transceiver\+HAL, and callable by upper applications\+:
+\begin{DoxyEnumerate}
+\item Open function
+\item write function
+\item read function
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsubsubsection{\texorpdfstring{Feedback}{Feedback}}\label{md__r_e_a_d_m_e_autotoc_md6}
+Generating project files according to the overall design is done very well. However, there is a lack of detail regarding the parameters and return values of the functions.\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Prompt 2}{Prompt 2}}\label{md__r_e_a_d_m_e_autotoc_md7}
+\href{https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1A.csv}{\texttt{ https\+://github.\+com/1und0/\+Shake\+Track/blob/master/dataset/01/user1/1\+A.\+csv}} and \href{https://github.com/1und0/ShakeTrack/blob/master/dataset/01/user1/1B}{\texttt{ https\+://github.\+com/1und0/\+Shake\+Track/blob/master/dataset/01/user1/1B}}. After reading the csv data and learning the gbm model with cmsis nn, Qx\+Model.\+c and Qx\+Model.\+h files are created so that the user can use new input data. Generate code to infer whether A or B is used using Qx\+ML.\+c and Qx\+ML.\+h.\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysubsubsubsection{\texorpdfstring{Feedback}{Feedback}}\label{md__r_e_a_d_m_e_autotoc_md8}
+When asked to provide data links from the web and create functions related to ML training and inference, the basic structure and functions are well-\/generated. However, the code related to actual GBM training is not generated, and the user is asked to create the code themselves.\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysubsubsection{\texorpdfstring{Prompt 3}{Prompt 3}}\label{md__r_e_a_d_m_e_autotoc_md9}
+Please make Makefile to build source codes to a static library with name \textquotesingle{}lib\+Qx\+Model.\+a\textquotesingle{}\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysubsubsubsection{\texorpdfstring{Feedback}{Feedback}}\label{md__r_e_a_d_m_e_autotoc_md10}
+The creation of the Makefile is done very well.\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysubsubsection{\texorpdfstring{Prompt 4}{Prompt 4}}\label{md__r_e_a_d_m_e_autotoc_md11}
+In Makefile, download cmsis source codes to build a library.\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxysubsubsubsection{\texorpdfstring{Feedback}{Feedback}}\label{md__r_e_a_d_m_e_autotoc_md12}
+The creation of the Makefile is done very well, and the addition of necessary features to the Makefile is also well-\/handled.\hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysubsubsection{\texorpdfstring{Prompt 5}{Prompt 5}}\label{md__r_e_a_d_m_e_autotoc_md13}
+Create comments with doxygen format.\hypertarget{md__r_e_a_d_m_e_autotoc_md14}{}\doxysubsubsubsection{\texorpdfstring{Feedback}{Feedback}}\label{md__r_e_a_d_m_e_autotoc_md14}
+Comments are generated very well too. 
